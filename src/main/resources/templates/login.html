@@ -2,18 +2,97 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Login - Encomiendas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Atyra Express</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 </head>
-<body>
-<h2>Iniciar Sesión</h2>
+<body style="margin:0; font-family:'Inter', Arial, sans-serif; background:#EEF6FF; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:20px;">
 
-<div th:if="${param.error}" style="color: red;">
-    Usuario o contraseña incorrectos.
+<div style="max-width:1000px; width:100%; background:white; border-radius:20px; overflow:hidden; display:flex; box-shadow:0 20px 40px rgba(30,58,95,0.12); border:1px solid #E3EDF8; flex-wrap:wrap;">
+
+    <!-- IZQUIERDA - Igual que tu documento -->
+    <div style="flex:1; min-width:300px; background:#DDEAF8; padding:32px; display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+            <div style="display:flex; align-items:center; gap:10px;">
+                <div style="background:#FFA13A; width:36px; height:36px; border-radius:10px; display:flex; align-items:center; justify-content:center;">🚌</div>
+                <span style="font-weight:800; color:#1E3A5F; font-size:20px;">Atyra <span style="color:#B86A0F;">Express</span></span>
+            </div>
+        </div>
+
+        <div style="text-align:center; margin: 20px 0;">
+            <div style="font-size:80px; margin-bottom:10px;">🚌</div>
+            <h2 style="color:#1E3A5F; font-size:28px; font-weight:800; line-height:1.2; margin:0;">Un solo acceso para<br>clientes y personal</h2>
+            <p style="color:#6B86A8; font-size:13px; margin-top:12px;">Al ingresar te llevamos directo a tu panel según tu tipo de cuenta.</p>
+        </div>
+
+        <div style="display:flex; gap:8px; flex-wrap:wrap; justify-content:center;">
+            <span style="background:white; border-radius:999px; padding:6px 12px; font-size:12px; border:1px solid #CBD9EC; color:#1E3A5F;">👤 Cliente</span>
+            <span style="background:white; border-radius:999px; padding:6px 12px; font-size:12px; border:1px solid #CBD9EC; color:#1E3A5F;">💼 Empleado</span>
+            <span style="background:white; border-radius:999px; padding:6px 12px; font-size:12px; border:1px solid #CBD9EC; color:#1E3A5F;">🛡️ Administrador</span>
+        </div>
+    </div>
+
+    <!-- DERECHA - Formulario -->
+    <div style="flex:1; min-width:320px; padding:40px 32px; background:white;">
+        <div style="text-align:right; margin-bottom:10px;">
+            <a href="/" style="text-decoration:none; color:#6B86A8; font-size:12px; border:1px solid #E3EDF8; padding:6px 12px; border-radius:999px;">← Volver al inicio</a>
+        </div>
+
+        <h2 style="color:#1E3A5F; font-size:24px; font-weight:800; margin:0 0 6px 0;">Bienvenido de nuevo</h2>
+        <p style="color:#6B86A8; font-size:13px; margin:0 0 24px 0;">Ingresa con el usuario y la contraseña de tu cuenta.</p>
+
+        <div th:if="${param.error}" style="background:#FEF2F2; border:1px solid #FECACA; color:#DC2626; padding:12px; border-radius:12px; font-size:13px; margin-bottom:16px;">
+            Usuario o contraseña incorrectos.
+        </div>
+
+        <form th:action="@{/login}" method="post">
+            <div style="margin-bottom:16px;">
+                <label style="font-size:13px; font-weight:600; color:#1E3A5F; display:block; margin-bottom:6px;">Usuario o correo</label>
+                <div style="position:relative;">
+                    <input type="text" name="username" placeholder="tu.usuario" required
+                           style="width:100%; padding:12px 12px 12px 40px; border:1px solid #D6E4F5; border-radius:12px; font-size:14px; box-sizing:border-box; outline:none;">
+                    <span style="position:absolute; left:12px; top:50%; transform:translateY(-50%); color:#6B86A8;">👤</span>
+                </div>
+            </div>
+
+            <div style="margin-bottom:12px;">
+                <label style="font-size:13px; font-weight:600; color:#1E3A5F; display:block; margin-bottom:6px;">Contraseña</label>
+                <div style="position:relative;">
+                    <input type="password" name="password" placeholder="Tu contraseña" required
+                           style="width:100%; padding:12px 80px 12px 40px; border:1px solid #D6E4F5; border-radius:12px; font-size:14px; box-sizing:border-box; outline:none;">
+                    <span style="position:absolute; left:12px; top:50%; transform:translateY(-50%); color:#6B86A8;">🔒</span>
+                    <span style="position:absolute; right:12px; top:50%; transform:translateY(-50%); color:#1E3A5F; font-size:12px; cursor:pointer; font-weight:600;">Mostrar</span>
+                </div>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                <label style="font-size:12px; color:#6B86A8; display:flex; align-items:center; gap:6px;"><input type="checkbox"> Recordarme</label>
+                <a href="#" style="font-size:12px; color:#1E3A5F; text-decoration:none; font-weight:600;">¿Olvidaste tu contraseña?</a>
+            </div>
+
+            <button type="submit" style="width:100%; padding:14px; background:#1E3A5F; color:white; border:none; border-radius:999px; font-weight:700; font-size:14px; cursor:pointer;">
+                Ingresar →
+            </button>
+        </form>
+
+        <div style="margin-top:20px; background:#F6F9FF; border:1px solid #E3EDF8; padding:14px; border-radius:12px; display:flex; gap:10px; align-items:center;">
+            <div style="width:36px; height:36px; background:#FFF0DB; border-radius:8px; display:flex; align-items:center; justify-content:center;">🔍</div>
+            <div>
+                <div style="font-size:13px; font-weight:700; color:#1E3A5F;">¿Solo quieres rastrear un envío?</div>
+                <div style="font-size:11px; color:#6B86A8;">Hazlo sin iniciar sesión, con tu código de guía.</div>
+            </div>
+        </div>
+
+        <div style="text-align:center; margin-top:16px; font-size:12px; color:#6B86A8;">
+            ¿Aún no tienes cuenta? <a th:href="@{/registro}" style="color:#1E3A5F; font-weight:700; text-decoration:none;">Crear cuenta de cliente</a>
+        </div>
+
+        <div style="text-align:center; margin-top:24px; font-size:11px; color:#A8C0D8;">© 2026 Atyra Express</div>
+    </div>
 </div>
 
-<form th:action="@{/login}" method="post">
-    <div>
-        <label>Usuario: </label>
+</body>
+</html>
         <input type="text" name="username" required>
     </div>
     <div>
